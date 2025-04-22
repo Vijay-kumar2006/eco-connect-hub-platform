@@ -1,198 +1,176 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Search } from "lucide-react";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Search } from "lucide-react";
+
+const NAV = [
+  { to: "/", label: "HOME" },
+  { to: "/explore", label: "EXPLORE", active: true },
+  { to: "/track", label: "TRACK" },
+  { to: "/identify", label: "IDENTIFY" },
+  { to: "/shopping", label: "Shopping" },
+  { to: "/community", label: "COMMUNITY" },
+  { to: "/profile", label: "PROFILE" },
+];
 
 const Explore = () => {
-  const ecoTips = [
-    {
-      id: 1,
-      title: "Reduce Single-Use Plastics",
-      description: "Switch to reusable water bottles, bags, and containers to minimize plastic waste in landfills and oceans.",
-      category: "Lifestyle",
-      image: "https://images.unsplash.com/photo-1605600659873-d808a13e4d9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 2,
-      title: "Start Composting at Home",
-      description: "Turn kitchen scraps and yard waste into nutrient-rich soil for your garden while reducing methane emissions.",
-      category: "Waste Management",
-      image: "https://images.unsplash.com/photo-1591340250382-899a54d55941?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 3,
-      title: "Energy-Efficient Lighting",
-      description: "Replace traditional bulbs with LED lights to save energy and reduce your electricity bill.",
-      category: "Energy",
-      image: "https://images.unsplash.com/photo-1532618500676-2e0cbf7ba8b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 4,
-      title: "Water Conservation Methods",
-      description: "Install low-flow showerheads and fix leaky faucets to save thousands of gallons of water annually.",
-      category: "Water",
-      image: "https://images.unsplash.com/photo-1534707055352-5d9de5ec3d7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 5,
-      title: "Reduce Meat Consumption",
-      description: "Try incorporating more plant-based meals into your diet to reduce carbon footprint and water usage.",
-      category: "Food",
-      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    },
-    {
-      id: 6,
-      title: "Shop Local and Seasonal",
-      description: "Support local farmers and reduce transportation emissions by buying seasonal produce from nearby sources.",
-      category: "Shopping",
-      image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-    }
-  ];
-
-  const categories = [
-    { name: "All", count: ecoTips.length },
-    { name: "Lifestyle", count: 1 },
-    { name: "Waste Management", count: 1 },
-    { name: "Energy", count: 1 },
-    { name: "Water", count: 1 },
-    { name: "Food", count: 1 },
-    { name: "Shopping", count: 1 }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
-      <header className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-6">
-          <nav className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-green-600">EcoConnect Hub</div>
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="text-gray-600 hover:text-green-600 font-medium">Home</Link>
-              <Link to="/explore" className="text-green-600 hover:text-green-700 font-medium">Explore</Link>
-              <Link to="/track" className="text-gray-600 hover:text-green-600 font-medium">Track</Link>
-              <Link to="/shopping" className="text-gray-600 hover:text-green-600 font-medium">Shop</Link>
-              <Link to="/community" className="text-gray-600 hover:text-green-600 font-medium">Community</Link>
-              <Link to="/profile" className="text-gray-600 hover:text-green-600 font-medium">Profile</Link>
-            </div>
-          </nav>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-green-100 pb-16">
+      {/* Navbar */}
+      <nav className="w-full bg-gradient-to-r from-green-200 via-green-300 to-green-400 border-b border-green-300 px-4 py-3 flex items-center justify-between shadow">
+        <div className="flex flex-col">
+          <div className="text-2xl font-bold text-black tracking-tight">Ecotrack</div>
+          <span className="text-xs text-gray-800 font-medium leading-none">
+            Empowering You to Track<br />and Protect <span className="text-green-700 font-bold">Nature</span>
+          </span>
         </div>
-      </header>
-
-      <main className="container mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Explore Eco-Friendly Resources</h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Discover tips, guides, and information to help you live more sustainably and reduce your environmental impact.
-          </p>
+        <ul className="flex-1 flex items-center justify-center gap-4 mx-10">
+          {NAV.map(item => (
+            <li key={item.to}>
+              <Link
+                to={item.to}
+                className={
+                  "font-bold px-2 py-1 rounded transition hover:underline " +
+                  (item.active
+                    ? "text-white bg-green-800 shadow"
+                    : "text-green-900 hover:bg-green-100")
+                }
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center gap-3">
+          <div className="bg-white px-2 py-1 rounded flex items-center gap-1 border border-green-300 shadow-sm">
+            <Search className="h-4 w-4 text-gray-600" />
+            <input
+              className="outline-none border-none bg-transparent text-sm w-24"
+              placeholder="SEARCH"
+            />
+          </div>
+          <Link to="/profile" title="Profile">
+            <img
+              src="/lovable-uploads/67076f3c-666f-486c-8723-73cc2662db4f.png"
+              className="w-8 h-8 rounded-full border-2 border-yellow-300 object-cover"
+              alt="Profile"
+            />
+          </Link>
         </div>
+      </nav>
 
-        <div className="flex flex-col lg:flex-row gap-8 mb-12">
-          <div className="w-full lg:w-1/4">
-            <div className="bg-white rounded-lg shadow-md p-6 sticky top-8">
-              <h2 className="text-xl font-semibold mb-6">Categories</h2>
-              <div className="space-y-2">
-                {categories.map(category => (
-                  <button 
-                    key={category.name}
-                    className={`w-full text-left px-3 py-2 rounded-md flex justify-between items-center ${
-                      category.name === 'All' ? 'bg-green-100 text-green-800' : 'hover:bg-gray-100'
-                    }`}
-                  >
-                    <span>{category.name}</span>
-                    <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">
-                      {category.count}
-                    </span>
-                  </button>
-                ))}
-              </div>
+      {/* Main Explore Content */}
+      <main className="max-w-6xl mx-auto mt-10">
+        <h1 className="text-3xl lg:text-4xl font-extrabold text-green-900 mb-4 text-center tracking-tight">Explore</h1>
+        <p className="text-center text-gray-700 text-lg mb-10">
+          Stay up-to-date with the latest eco news, educational resources, and real-life success stories curated for our community.
+        </p>
 
-              <div className="mt-8">
-                <h2 className="text-xl font-semibold mb-4">Search</h2>
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search resources..."
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          {/* Left column */}
+          <div>
+            {/* Latest Eco News */}
+            <div className="rounded-3xl bg-gradient-to-tr from-green-100 via-white to-green-200 shadow-xl p-6 mb-8 hover:scale-105 transition-transform duration-200">
+              <h2 className="text-xl font-bold mb-3 text-green-900">Latest Eco-Friendly News & Trends</h2>
+              <div className="flex flex-wrap gap-4 justify-start items-center">
+                <div>
+                  <div className="text-gray-800 font-medium mb-1">The Impact of Recycling on the Environment</div>
+                  <img
+                    src="https://static.vecteezy.com/system/resources/thumbnails/013/743/964/small/recycle-sign-symbol-icon-illustration-free-vector.jpg"
+                    alt="Impact of Recycling"
+                    className="rounded-md h-20 w-auto shadow"
                   />
-                  <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+                </div>
+                <div>
+                  <div className="text-gray-800 font-medium mb-1">10 Easy Ways to Live a More Sustainable Lifestyle</div>
+                  <img
+                    src="https://img.freepik.com/free-vector/environmental-impact-recycling-infographics_23-2148825053.jpg"
+                    alt="Sustainable Lifestyle"
+                    className="rounded-md h-20 w-auto shadow"
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://www.gpminstitute.com/uploads/recycle%20tips.jpg"
+                    alt="10 Reasons to Recycle"
+                    className="rounded-md h-20 w-auto shadow"
+                  />
+                </div>
+              </div>
+            </div>
+            {/* Success Stories */}
+            <div className="rounded-3xl bg-gradient-to-tr from-green-100 via-green-50 to-yellow-50 shadow-xl p-6 hover:scale-105 transition-transform duration-200">
+              <h2 className="text-xl font-bold mb-2 text-green-900">Success Stories & Community Highlights</h2>
+              <p className="text-gray-800 mb-3">
+                A person from India has created an idea: fuel from waste and old cooking oils and earned lakhs.
+              </p>
+              <img
+                src="https://media.istockphoto.com/id/957346498/photo/project-teambuilding-wealth-from-waste.jpg?s=612x612&w=0&k=20&c=qBbX3WRXNKOWwD8p6jHLKmOqD47_PsvNhacZT84ZwWs="
+                alt="Wealth from Waste"
+                className="rounded-md h-24 w-auto mx-auto shadow"
+              />
+            </div>
+          </div>
+
+          {/* Right column */}
+          <div>
+            <div className="rounded-3xl bg-gradient-to-tr from-yellow-100 via-white to-green-100 shadow-xl p-6 hover:scale-105 transition-transform duration-200">
+              <h2 className="text-xl font-bold mb-3 text-green-900">Educational Resources & Guides</h2>
+              <div className="flex flex-wrap gap-4">
+                <div>
+                  <div className="text-gray-800 font-medium mb-1">Gold from old mobile and electronic devices</div>
+                  <img
+                    src="/lovable-uploads/d1224fed-7269-4a07-bb0f-28613c7cbeb7.png"
+                    alt="Gold from electronics"
+                    className="rounded-md h-16 w-auto shadow"
+                  />
+                </div>
+                <div>
+                  <div className="text-gray-800 font-medium mb-1">Tips for reducing waste at home</div>
+                  <img
+                    src="https://i.ytimg.com/vi/mDa38Jk1JFc/maxresdefault.jpg"
+                    alt="Tips for reducing waste"
+                    className="rounded-md h-16 w-auto shadow"
+                  />
+                </div>
+                <div>
+                  <div className="text-gray-800 font-medium mb-1">Ways to Reduce Waste at Home</div>
+                  <img
+                    src="https://earth911.com/wp-content/uploads/2017/12/ways-to-reduce-waste-earth911.jpg"
+                    alt="Ways to Reduce Waste"
+                    className="rounded-md h-16 w-auto shadow"
+                  />
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="w-full lg:w-3/4">
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Featured Resource</h2>
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="w-full md:w-1/2">
-                  <img
-                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="Zero Waste Living Guide"
-                    className="w-full h-64 object-cover rounded-lg"
-                  />
-                </div>
-                <div className="w-full md:w-1/2">
-                  <span className="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-4">
-                    Comprehensive Guide
-                  </span>
-                  <h3 className="text-xl font-bold mb-3">Zero Waste Living: A Beginner's Guide</h3>
-                  <p className="text-gray-600 mb-4">
-                    Learn practical steps to reduce waste in your daily life, from shopping habits to home organization. This comprehensive guide provides actionable tips for beginners looking to embrace a more sustainable lifestyle.
-                  </p>
-                  <Button className="bg-green-600 hover:bg-green-700">
-                    Read Full Guide
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {ecoTips.map(tip => (
-                <div key={tip.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <img
-                    src={tip.image}
-                    alt={tip.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-5">
-                    <span className="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium mb-3">
-                      {tip.category}
-                    </span>
-                    <h3 className="font-bold text-lg mb-2">{tip.title}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{tip.description}</p>
-                    <button className="text-green-600 font-medium hover:text-green-700 flex items-center text-sm">
-                      Read more
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex justify-center">
-              <div className="flex space-x-2">
-                <button className="px-4 py-2 bg-green-600 text-white rounded-md">1</button>
-                <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">2</button>
-                <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">3</button>
-                <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">
-                  <ArrowRight className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
-          </div>
+        {/* Links section */}
+        <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <Link
+            to="/track"
+            className="px-6 py-3 bg-gradient-to-r from-lime-300 via-green-300 to-teal-300 text-green-900 font-bold rounded-full shadow hover:scale-105 transition-transform"
+          >
+            Go to Track Page
+          </Link>
+          <Link
+            to="/community"
+            className="px-6 py-3 bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400 text-yellow-900 font-bold rounded-full shadow hover:scale-105 transition-transform"
+          >
+            Join the Community
+          </Link>
+          <Link
+            to="/shopping"
+            className="px-6 py-3 bg-gradient-to-r from-pink-100 via-red-200 to-yellow-100 text-pink-800 font-bold rounded-full shadow hover:scale-105 transition-transform"
+          >
+            Eco Shopping
+          </Link>
         </div>
       </main>
-
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <p>&copy; 2025 EcoConnect Hub. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
 
 export default Explore;
+
