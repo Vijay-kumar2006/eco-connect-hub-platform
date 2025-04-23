@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Plus, Edit, Calendar } from "lucide-react";
+import IdentifyNavbar from '../components/IdentifyNavbar';
 
 const WetWaste = () => {
   const wasteEntries = [
@@ -23,21 +23,7 @@ const WetWaste = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-green-50">
-      <header className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-6">
-          <nav className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-green-600">EcoConnect Hub</div>
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="text-gray-600 hover:text-green-600 font-medium">Home</Link>
-              <Link to="/explore" className="text-gray-600 hover:text-green-600 font-medium">Explore</Link>
-              <Link to="/track" className="text-green-600 hover:text-green-700 font-medium">Track</Link>
-              <Link to="/shopping" className="text-gray-600 hover:text-green-600 font-medium">Shop</Link>
-              <Link to="/community" className="text-gray-600 hover:text-green-600 font-medium">Community</Link>
-              <Link to="/profile" className="text-gray-600 hover:text-green-600 font-medium">Profile</Link>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <IdentifyNavbar />
 
       <main className="container mx-auto px-4 py-12">
         <div className="mb-8">
