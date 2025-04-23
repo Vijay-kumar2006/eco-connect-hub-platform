@@ -1,3 +1,5 @@
+
+// This file is not in use, the application is using App.jsx instead
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,7 +18,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* All routes are defined in App.jsx */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
