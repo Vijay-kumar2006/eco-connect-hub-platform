@@ -1,14 +1,14 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Upload, Camera, Info, Search, Droplet, CloudRain } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Droplet, CloudRain } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const wetExamples = [
   { name: "Banana Peel", img: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=300&q=80" },
   { name: "Vegetable Scraps", img: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=300&q=80" }
 ];
+
 const dryExamples = [
   { name: "Dry Leaf", img: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=300&q=80" },
   { name: "Paper", img: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=300&q=80" }
@@ -24,7 +24,6 @@ const Identify = () => {
         </div>
       </header>
       <main className="container mx-auto px-4 py-8">
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Wet Waste */}
           <div className="bg-white rounded-xl shadow-md p-6">

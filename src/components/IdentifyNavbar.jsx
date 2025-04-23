@@ -1,15 +1,13 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, User, Home, ShoppingCart, Book, Leaf, Map, Droplet, CloudRain } from 'lucide-react';
+import { Home, Map, Leaf, Search, ShoppingCart, Book, User } from 'lucide-react';
 
 const navLinks = [
   { to: "/", label: "Home", icon: Home },
   { to: "/explore", label: "Explore", icon: Map },
   { to: "/track", label: "Track", icon: Leaf },
   { to: "/identify", label: "Identify", icon: Search },
-  { to: "/identify/wet", label: "Wet", icon: Droplet },
-  { to: "/identify/dry", label: "Dry", icon: CloudRain },
   { to: "/shopping", label: "Shopping", icon: ShoppingCart },
   { to: "/community", label: "Community", icon: Book },
   { to: "/profile", label: "Profile", icon: User },
