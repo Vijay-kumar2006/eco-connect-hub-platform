@@ -6,12 +6,15 @@ import { ShoppingCart, Search, Filter, Star, Heart, ArrowRight } from "lucide-re
 
 const Shopping = () => {
   const categories = [
-    { name: "All Products", count: 120 },
-    { name: "Home & Kitchen", count: 42 },
-    { name: "Personal Care", count: 28 },
-    { name: "Food & Beverages", count: 25 },
-    { name: "Fashion", count: 18 },
-    { name: "Garden & Outdoors", count: 7 }
+    { name: "All Eco Products", count: 120 },
+    { name: "Upcycled Home & Living", count: 38 },
+    { name: "Recycled Fashion & Accessories", count: 22 },
+    { name: "Eco Stationery & Office", count: 16 },
+    { name: "Sustainable Personal Care", count: 20 },
+    { name: "Green Gadgets & Tech", count: 8 },
+    { name: "Reused Furniture & Décor", count: 10 },
+    { name: "Eco-Friendly Bags & Storage", count: 6 },
+    { name: "Kids & Crafts (Recycled)", count: 7 }
   ];
 
   const products = [
