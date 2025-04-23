@@ -1,10 +1,27 @@
-
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Home as HomeIcon, User, ShoppingCart } from "lucide-react";
 
+const useMockAuth = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const navigate = useNavigate();
+  const login = () => {
+    setIsAuthenticated(true);
+    navigate("/");
+  };
+  const logout = () => {
+    setIsAuthenticated(false);
+    navigate("/");
+  };
+
+  return { isAuthenticated, login, logout };
+};
+
 const Home = () => {
+  const { isAuthenticated, logout } = useMockAuth();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
       <header className="bg-white shadow-md">
@@ -17,13 +34,22 @@ const Home = () => {
               <Link to="/track" className="text-gray-600 hover:text-green-600 font-medium">Track</Link>
               <Link to="/shopping" className="text-gray-600 hover:text-green-600 font-medium">Shop</Link>
               <Link to="/community" className="text-gray-600 hover:text-green-600 font-medium">Community</Link>
-              <Link to="/login" className="text-gray-600 hover:text-green-600 font-medium">Login</Link>
-              <Link to="/signup" className="text-gray-600 hover:text-green-600 font-medium">Sign Up</Link>
+              {!isAuthenticated && (
+                <>
+                  <Link to="/login" className="text-gray-600 hover:text-green-600 font-medium">Login</Link>
+                  <Link to="/signup" className="text-gray-600 hover:text-green-600 font-medium">Sign Up</Link>
+                </>
+              )}
               <Link to="/profile">
                 <Button variant="ghost" size="icon">
                   <User className="h-5 w-5 text-gray-600 hover:text-green-600" />
                 </Button>
               </Link>
+              {isAuthenticated && (
+                <Button onClick={logout} variant="outline" className="ml-2 border-red-500 text-red-500 hover:bg-red-50">
+                  Logout
+                </Button>
+              )}
             </div>
           </nav>
         </div>
@@ -123,8 +149,12 @@ const Home = () => {
               <div>
                 <h3 className="text-lg font-medium mb-4">Account</h3>
                 <ul className="space-y-2">
-                  <li><Link to="/login" className="text-gray-300 hover:text-green-400">Login</Link></li>
-                  <li><Link to="/signup" className="text-gray-300 hover:text-green-400">Sign Up</Link></li>
+                  {!isAuthenticated && (
+                    <>
+                      <li><Link to="/login" className="text-gray-300 hover:text-green-400">Login</Link></li>
+                      <li><Link to="/signup" className="text-gray-300 hover:text-green-400">Sign Up</Link></li>
+                    </>
+                  )}
                   <li><Link to="/profile" className="text-gray-300 hover:text-green-400">Profile</Link></li>
                 </ul>
               </div>
