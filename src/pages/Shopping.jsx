@@ -1,10 +1,18 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Search, Filter, Star, Heart, ArrowRight } from "lucide-react";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 
 const Shopping = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortOption, setSortOption] = useState('featured');
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [priceMin, setPriceMin] = useState('');
+  const [priceMax, setPriceMax] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All Eco Products');
+
   const categories = [
     { name: "All Eco Products", count: 120 },
     { name: "Upcycled Home & Living", count: 38 },
@@ -77,6 +85,68 @@ const Shopping = () => {
     }
   ];
 
+  useEffect(() => {
+    let results = [...products];
+    
+    if (searchTerm) {
+      results = results.filter(product => 
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        product.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    if (selectedCategory !== 'All Eco Products') {
+      results = results.filter(product => {
+        if (selectedCategory === 'Sustainable Personal Care') return product.category === 'Personal Care';
+        if (selectedCategory === 'Upcycled Home & Living' || selectedCategory === 'Eco-Friendly Bags & Storage') return product.category === 'Home & Kitchen';
+        if (selectedCategory === 'Recycled Fashion & Accessories') return product.category === 'Fashion';
+        return false;
+      });
+    }
+    
+    if (priceMin !== '') {
+      results = results.filter(product => product.price >= Number(priceMin));
+    }
+    if (priceMax !== '') {
+      results = results.filter(product => product.price <= Number(priceMax));
+    }
+    
+    switch (sortOption) {
+      case 'price-asc':
+        results.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-desc':
+        results.sort((a, b) => b.price - a.price);
+        break;
+      case 'rating':
+        results.sort((a, b) => b.rating - a.rating);
+        break;
+      case 'newest':
+        results.sort((a, b) => b.id - a.id);
+        break;
+      default:
+        break;
+    }
+    
+    setFilteredProducts(results);
+  }, [searchTerm, sortOption, priceMin, priceMax, selectedCategory]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSortChange = (value) => {
+    setSortOption(value);
+  };
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const applyPriceFilter = () => {
+    // The useEffect hook will handle filtering when priceMin or priceMax change
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
       <header className="bg-white shadow-md">
@@ -105,10 +175,12 @@ const Shopping = () => {
 
         <div className="mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="relative w-full md:w-96">
-            <input
+            <Input
               type="text"
               placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+              className="w-full pl-10 pr-4 py-2"
+              value={searchTerm}
+              onChange={handleSearch}
             />
             <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
           </div>
@@ -118,13 +190,18 @@ const Shopping = () => {
               <Filter className="mr-2 h-4 w-4" />
               <span>Filter</span>
             </Button>
-            <select className="px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500">
-              <option>Sort by: Featured</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-              <option>Rating: Highest</option>
-              <option>Newest First</option>
-            </select>
+            <Select value={sortOption} onValueChange={handleSortChange}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Sort by: Featured" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="featured">Featured</SelectItem>
+                <SelectItem value="price-asc">Price: Low to High</SelectItem>
+                <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                <SelectItem value="rating">Rating: Highest</SelectItem>
+                <SelectItem value="newest">Newest First</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
@@ -137,8 +214,9 @@ const Shopping = () => {
                   <button 
                     key={category.name}
                     className={`w-full text-left px-3 py-2 rounded-md flex justify-between items-center ${
-                      category.name === 'All Products' ? 'bg-green-100 text-green-800' : 'hover:bg-gray-100'
+                      category.name === selectedCategory ? 'bg-green-100 text-green-800' : 'hover:bg-gray-100'
                     }`}
+                    onClick={() => handleCategoryClick(category.name)}
                   >
                     <span>{category.name}</span>
                     <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">
@@ -152,22 +230,31 @@ const Shopping = () => {
                 <h2 className="text-xl font-semibold mb-4">Price Range</h2>
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-5/12">
-                    <input
+                    <Input
                       type="number"
                       placeholder="Min"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+                      value={priceMin}
+                      onChange={(e) => setPriceMin(e.target.value)}
+                      className="w-full"
                     />
                   </div>
                   <div className="w-2/12 text-center">-</div>
                   <div className="w-5/12">
-                    <input
+                    <Input
                       type="number"
                       placeholder="Max"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
+                      value={priceMax}
+                      onChange={(e) => setPriceMax(e.target.value)}
+                      className="w-full"
                     />
                   </div>
                 </div>
-                <Button className="w-full bg-green-600 hover:bg-green-700">Apply Filter</Button>
+                <Button 
+                  className="w-full bg-green-600 hover:bg-green-700"
+                  onClick={applyPriceFilter}
+                >
+                  Apply Filter
+                </Button>
               </div>
 
               <div className="mt-8 border-t pt-6">
@@ -191,55 +278,72 @@ const Shopping = () => {
           </div>
 
           <div className="w-full lg:w-3/4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map(product => (
-                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="relative">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-48 object-cover"
-                    />
-                    <button className="absolute top-3 right-3 h-8 w-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:bg-opacity-100">
-                      <Heart className="h-5 w-5 text-gray-600 hover:text-red-500" />
-                    </button>
-                    {product.badge && (
-                      <span className="absolute top-3 left-3 bg-green-600 text-white text-xs px-2 py-1 rounded">
-                        {product.badge}
-                      </span>
-                    )}
-                  </div>
-                  <div className="p-4">
-                    <div className="text-xs text-gray-500 mb-1">{product.category}</div>
-                    <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
-                    <div className="flex items-center mb-2">
-                      <div className="flex items-center">
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        <span className="ml-1 text-sm font-medium">{product.rating}</span>
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProducts.map(product => (
+                  <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div className="relative">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-48 object-cover"
+                      />
+                      <button className="absolute top-3 right-3 h-8 w-8 bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:bg-opacity-100">
+                        <Heart className="h-5 w-5 text-gray-600 hover:text-red-500" />
+                      </button>
+                      {product.badge && (
+                        <span className="absolute top-3 left-3 bg-green-600 text-white text-xs px-2 py-1 rounded">
+                          {product.badge}
+                        </span>
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <div className="text-xs text-gray-500 mb-1">{product.category}</div>
+                      <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
+                      <div className="flex items-center mb-2">
+                        <div className="flex items-center">
+                          <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                          <span className="ml-1 text-sm font-medium">{product.rating}</span>
+                        </div>
+                        <span className="text-xs text-gray-500 ml-2">({product.reviews} reviews)</span>
                       </div>
-                      <span className="text-xs text-gray-500 ml-2">({product.reviews} reviews)</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-lg font-bold">${product.price}</span>
-                      <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                        <ShoppingCart className="h-4 w-4" />
-                      </Button>
+                      <div className="flex items-center justify-between">
+                        <span className="text-lg font-bold">${product.price}</span>
+                        <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                          <ShoppingCart className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex justify-center">
-              <div className="flex space-x-2">
-                <button className="px-4 py-2 bg-green-600 text-white rounded-md">1</button>
-                <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">2</button>
-                <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">3</button>
-                <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">
-                  <ArrowRight className="h-5 w-5" />
-                </button>
+                ))}
               </div>
-            </div>
+            ) : (
+              <div className="bg-white rounded-lg shadow-md p-8 text-center">
+                <p className="text-gray-600 text-lg mb-4">No products match your search criteria.</p>
+                <Button variant="outline" onClick={() => {
+                  setSearchTerm('');
+                  setSortOption('featured');
+                  setPriceMin('');
+                  setPriceMax('');
+                  setSelectedCategory('All Eco Products');
+                }}>
+                  Reset Filters
+                </Button>
+              </div>
+            )}
+
+            {filteredProducts.length > 0 && (
+              <div className="mt-8 flex justify-center">
+                <div className="flex space-x-2">
+                  <button className="px-4 py-2 bg-green-600 text-white rounded-md">1</button>
+                  <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">2</button>
+                  <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">3</button>
+                  <button className="px-4 py-2 bg-white text-gray-700 rounded-md hover:bg-gray-100">
+                    <ArrowRight className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </main>
