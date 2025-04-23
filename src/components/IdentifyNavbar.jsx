@@ -1,13 +1,15 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, User, Home, ShoppingCart, Book, Leaf, Map } from 'lucide-react';
+import { Search, User, Home, ShoppingCart, Book, Leaf, Map, Droplet, CloudRain } from 'lucide-react';
 
 const navLinks = [
   { to: "/", label: "Home", icon: Home },
   { to: "/explore", label: "Explore", icon: Map },
   { to: "/track", label: "Track", icon: Leaf },
   { to: "/identify", label: "Identify", icon: Search },
+  { to: "/identify/wet", label: "Wet", icon: Droplet },
+  { to: "/identify/dry", label: "Dry", icon: CloudRain },
   { to: "/shopping", label: "Shopping", icon: ShoppingCart },
   { to: "/community", label: "Community", icon: Book },
   { to: "/profile", label: "Profile", icon: User },
@@ -35,7 +37,7 @@ export default function IdentifyNavbar() {
                   : "text-green-900 hover:bg-green-100"
               } flex items-center gap-1`}
             >
-              {link.icon && <link.icon size={16} className="inline" />}
+              {link.icon && <link.icon size={18} className="inline mr-1" />}
               {link.label}
             </Link>
           </li>

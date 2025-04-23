@@ -18,6 +18,8 @@ import Profile from "./pages/Profile";
 import Identify from "./pages/Identify";
 import NotFound from "./pages/NotFound";
 import IdentifyNavbar from "./components/IdentifyNavbar";
+import IdentifyWet from "./pages/IdentifyWet";
+import IdentifyDry from "./pages/IdentifyDry";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +44,8 @@ const App = () => (
           <Route path="/community/join" element={<JoinCommunity />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/identify" element={<Identify />} />
+          <Route path="/identify/wet" element={<IdentifyWet />} />
+          <Route path="/identify/dry" element={<IdentifyDry />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
