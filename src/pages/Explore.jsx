@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
+import IdentifyNavbar from "../components/IdentifyNavbar";
 
 const NAV = [
   { to: "/", label: "HOME" },
@@ -16,48 +17,8 @@ const NAV = [
 const Explore = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-green-100 pb-16">
-      {/* Navbar */}
-      <nav className="w-full bg-gradient-to-r from-green-200 via-green-300 to-green-400 border-b border-green-300 px-4 py-3 flex items-center justify-between shadow">
-        <div className="flex flex-col">
-          <div className="text-2xl font-bold text-black tracking-tight">Ecotrack</div>
-          <span className="text-xs text-gray-800 font-medium leading-none">
-            Empowering You to Track<br />and Protect <span className="text-green-700 font-bold">Nature</span>
-          </span>
-        </div>
-        <ul className="flex-1 flex items-center justify-center gap-4 mx-10">
-          {NAV.map(item => (
-            <li key={item.to}>
-              <Link
-                to={item.to}
-                className={
-                  "font-bold px-2 py-1 rounded transition hover:underline " +
-                  (item.active
-                    ? "text-white bg-green-800 shadow"
-                    : "text-green-900 hover:bg-green-100")
-                }
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center gap-3">
-          <div className="bg-white px-2 py-1 rounded flex items-center gap-1 border border-green-300 shadow-sm">
-            <Search className="h-4 w-4 text-gray-600" />
-            <input
-              className="outline-none border-none bg-transparent text-sm w-24"
-              placeholder="SEARCH"
-            />
-          </div>
-          <Link to="/profile" title="Profile">
-            <img
-              src="/lovable-uploads/67076f3c-666f-486c-8723-73cc2662db4f.png"
-              className="w-8 h-8 rounded-full border-2 border-yellow-300 object-cover"
-              alt="Profile"
-            />
-          </Link>
-        </div>
-      </nav>
+      {/* Use consistent navbar */}
+      <IdentifyNavbar />
 
       {/* Main Explore Content */}
       <main className="max-w-6xl mx-auto mt-10">
