@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,6 +17,7 @@ import JoinCommunity from "./pages/JoinCommunity";
 import Profile from "./pages/Profile";
 import Identify from "./pages/Identify";
 import NotFound from "./pages/NotFound";
+import IdentifyNavbar from "./components/IdentifyNavbar";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +27,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <IdentifyNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
