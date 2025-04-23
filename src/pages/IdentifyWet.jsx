@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Upload, Droplet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import IdentifyNavbar from '../components/IdentifyNavbar';
 
 const wetExamples = [
   { name: "Banana Peel", img: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?auto=format&fit=crop&w=300&q=80" },
@@ -27,11 +28,14 @@ const IdentifyWet = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50 py-8">
-      <div className="max-w-2xl mx-auto mb-8">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
+      <IdentifyNavbar />
+      
+      <div className="max-w-2xl mx-auto mb-8 px-4 py-8">
         <h1 className="text-3xl font-bold text-green-700 flex items-center gap-2 mb-4">
           <Droplet size={28} className="text-green-500" /> Wet Waste Identifier
         </h1>
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {wetExamples.map((w) => (
             <div key={w.name} className="bg-white p-4 rounded-lg shadow flex flex-col items-center">
@@ -40,6 +44,7 @@ const IdentifyWet = () => {
             </div>
           ))}
         </div>
+        
         <label htmlFor="wet-upload" className="block cursor-pointer mt-8">
           <div className="border-2 border-dashed border-green-300 py-8 px-3 rounded-md text-center hover:bg-green-50 transition">
             <Upload size={36} className="mx-auto mb-3 text-green-500" />
@@ -47,6 +52,7 @@ const IdentifyWet = () => {
           </div>
           <input id="wet-upload" type="file" accept="image/*" className="hidden" onChange={handleFileUpload} />
         </label>
+        
         {image && (
           <div className="mt-5 flex flex-col items-center">
             <img src={image} alt="Uploaded" className="w-56 h-56 rounded-lg object-cover shadow" />
