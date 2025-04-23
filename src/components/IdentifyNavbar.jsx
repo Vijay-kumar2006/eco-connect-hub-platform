@@ -1,15 +1,15 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, User, Home } from 'lucide-react';
+import { Search, User, Home, ShoppingCart, Book, Leaf, Map } from 'lucide-react';
 
 const navLinks = [
   { to: "/", label: "Home", icon: Home },
-  { to: "/explore", label: "Explore" },
-  { to: "/track", label: "Track" },
+  { to: "/explore", label: "Explore", icon: Map },
+  { to: "/track", label: "Track", icon: Leaf },
   { to: "/identify", label: "Identify", icon: Search },
-  { to: "/shopping", label: "Shopping" },
-  { to: "/community", label: "Community" },
+  { to: "/shopping", label: "Shopping", icon: ShoppingCart },
+  { to: "/community", label: "Community", icon: Book },
   { to: "/profile", label: "Profile", icon: User },
 ];
 
