@@ -19,8 +19,14 @@ export default function IdentifyNavbar() {
   return (
     <nav className="w-full bg-gradient-to-r from-green-200 via-blue-100 to-green-100 shadow px-4 py-2 flex items-center justify-between mb-2">
       <div className="flex items-center gap-3">
+        {/* Logo image */}
+        <img
+          src="/lovable-uploads/67076f3c-666f-486c-8723-73cc2662db4f.png"
+          alt="EcoConnect Logo"
+          className="w-8 h-8 rounded-full border-2 border-green-700 object-cover"
+        />
         <span className="text-xl font-bold text-green-800 tracking-tight">EcoTrack</span>
-        <span className="text-xs text-gray-600 font-medium">
+        <span className="hidden sm:inline text-xs text-gray-600 font-medium">
           Identify & Learn about Plants!
         </span>
       </div>

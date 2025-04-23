@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Home as HomeIcon, User, ShoppingCart } from "lucide-react";
+import IdentifyNavbar from "../components/IdentifyNavbar";
 
 const useMockAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,36 +25,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
-      <header className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-6">
-          <nav className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-green-600">EcoConnect Hub</div>
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="text-green-600 hover:text-green-700 font-medium">Home</Link>
-              <Link to="/explore" className="text-gray-600 hover:text-green-600 font-medium">Explore</Link>
-              <Link to="/track" className="text-gray-600 hover:text-green-600 font-medium">Track</Link>
-              <Link to="/shopping" className="text-gray-600 hover:text-green-600 font-medium">Shop</Link>
-              <Link to="/community" className="text-gray-600 hover:text-green-600 font-medium">Community</Link>
-              {!isAuthenticated && (
-                <>
-                  <Link to="/login" className="text-gray-600 hover:text-green-600 font-medium">Login</Link>
-                  <Link to="/signup" className="text-gray-600 hover:text-green-600 font-medium">Sign Up</Link>
-                </>
-              )}
-              <Link to="/profile">
-                <Button variant="ghost" size="icon">
-                  <User className="h-5 w-5 text-gray-600 hover:text-green-600" />
-                </Button>
-              </Link>
-              {isAuthenticated && (
-                <Button onClick={logout} variant="outline" className="ml-2 border-red-500 text-red-500 hover:bg-red-50">
-                  Logout
-                </Button>
-              )}
-            </div>
-          </nav>
-        </div>
-      </header>
+      <IdentifyNavbar />
 
       <main className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row items-center gap-12">
