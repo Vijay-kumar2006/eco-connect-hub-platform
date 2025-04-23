@@ -16,6 +16,7 @@ import Community from "./pages/Community";
 import StartCommunity from "./pages/StartCommunity";
 import JoinCommunity from "./pages/JoinCommunity";
 import Profile from "./pages/Profile";
+import Identify from "./pages/Identify";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/community/start" element={<StartCommunity />} />
           <Route path="/community/join" element={<JoinCommunity />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/identify" element={<Identify />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
