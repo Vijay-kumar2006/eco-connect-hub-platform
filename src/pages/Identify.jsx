@@ -1,13 +1,14 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import IdentifyNavbar from '../components/IdentifyNavbar';
+import PageNavigation from '../components/PageNavigation';
 import { Search } from 'lucide-react';
 
 const Identify = () => {
   return (
     <>
       <IdentifyNavbar />
+      <PageNavigation />
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6 text-green-800">Waste Identification</h1>
         
