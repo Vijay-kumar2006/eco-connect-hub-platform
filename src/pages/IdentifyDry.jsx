@@ -1,9 +1,9 @@
-
 import React, { useState } from "react";
 import { Upload, CloudRain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import IdentifyNavbar from '../components/IdentifyNavbar';
+import PageNavigation from '../components/PageNavigation';
 
 const dryExamples = [
   { name: "Dry Leaf", img: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=300&q=80" },
@@ -30,6 +30,7 @@ const IdentifyDry = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 py-8">
       <IdentifyNavbar />
+      <PageNavigation />
       
       <div className="max-w-2xl mx-auto mb-8 px-4">
         <h1 className="text-3xl font-bold text-blue-700 flex items-center gap-2 mb-4">
@@ -62,4 +63,5 @@ const IdentifyDry = () => {
     </div>
   );
 };
+
 export default IdentifyDry;

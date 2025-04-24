@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import MainNavbar from '../components/MainNavbar';
+import PageNavigation from '../components/PageNavigation';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Search, Filter, Star, Heart, ArrowRight } from "lucide-react";
@@ -149,6 +151,9 @@ const Shopping = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
+      <MainNavbar />
+      <PageNavigation />
+      
       <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-6">
           <nav className="flex items-center justify-between">
