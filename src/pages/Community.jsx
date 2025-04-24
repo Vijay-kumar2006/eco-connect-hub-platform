@@ -1,6 +1,6 @@
 
 import React from 'react';
-import MainNavbar from '../components/MainNavbar';
+import EcoNavbar from '../components/EcoNavbar';
 import PageNavigation from '../components/PageNavigation';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -75,7 +75,7 @@ const Community = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
-      <MainNavbar />
+      <EcoNavbar />
       <PageNavigation />
       
       <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-16">

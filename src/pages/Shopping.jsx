@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import MainNavbar from '../components/MainNavbar';
+import EcoNavbar from '../components/EcoNavbar';
 import PageNavigation from '../components/PageNavigation';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -151,7 +152,7 @@ const Shopping = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50">
-      <MainNavbar />
+      <EcoNavbar />
       <PageNavigation />
       
       <main className="container mx-auto px-4 py-12">
