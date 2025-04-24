@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Home, MapPin, Search, ShoppingCart, Book, User, Leaf } from 'lucide-react';
 
 const EcoNavbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
     { to: "/", icon: Home, label: "Home" },
@@ -16,10 +17,14 @@ const EcoNavbar = () => {
     { to: "/profile", icon: User, label: "Profile" },
   ];
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <nav className="w-full bg-gradient-to-r from-green-200 via-blue-100 to-green-100 shadow px-4 py-2">
       <div className="container mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={handleLogoClick}>
           <img
             src="/lovable-uploads/67076f3c-666f-486c-8723-73cc2662db4f.png"
             alt="EcoTrack Logo"
@@ -31,7 +36,7 @@ const EcoNavbar = () => {
               Identify & Learn about Plants!
             </span>
           </div>
-        </Link>
+        </div>
         
         <div className="flex items-center gap-4">
           {navItems.map(({ to, icon: Icon, label }) => (
@@ -55,3 +60,4 @@ const EcoNavbar = () => {
 };
 
 export default EcoNavbar;
+
