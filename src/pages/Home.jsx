@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Home as HomeIcon, User, ShoppingCart } from "lucide-react";
+import { Home as HomeIcon, User, ShoppingCart, MapPin } from "lucide-react";
 import IdentifyNavbar from "../components/IdentifyNavbar";
+import { Card, CardContent } from "@/components/ui/card";
 
 const useMockAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -71,6 +72,29 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+        
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Find Recycling Centers Near You</h2>
+          <Link to="/recycling-centers">
+            <Card className="max-w-4xl mx-auto hover:shadow-lg transition-shadow cursor-pointer">
+              <CardContent className="p-6">
+                <div className="relative">
+                  <img 
+                    src="/lovable-uploads/c5e03f53-84bf-45b9-8008-7e2def08131a.png"
+                    alt="Recycling Centers Map"
+                    className="w-full h-[300px] object-cover rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-black/30 rounded-lg flex items-center justify-center">
+                    <div className="bg-white/90 px-6 py-3 rounded-full flex items-center gap-2">
+                      <MapPin className="text-green-600" />
+                      <span className="font-medium text-green-700">View Recycling Centers Map</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
         
         <div className="mt-16">
