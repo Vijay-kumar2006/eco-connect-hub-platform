@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Home as HomeIcon, User, ShoppingCart } from "lucide-react";
 import IdentifyNavbar from "../components/IdentifyNavbar";
+import RecyclingMap from "../components/RecyclingMap";
 
 const useMockAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -73,6 +75,12 @@ const Home = () => {
           </div>
         </div>
         
+        {/* Recycling Centers Map Section */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Find Recycling Centers Near You</h2>
+          <RecyclingMap />
+        </div>
+
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
