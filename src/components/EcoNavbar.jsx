@@ -12,6 +12,7 @@ const EcoNavbar = () => {
     { to: "/explore", icon: MapPin, label: "Explore" },
     { to: "/track", icon: Leaf, label: "Track" },
     { to: "/identify", icon: Search, label: "Identify" },
+    { to: "/recycling-centers", icon: MapPin, label: "Recycling Centers" },
     { to: "/shopping", icon: ShoppingCart, label: "Shopping" },
     { to: "/community", icon: Book, label: "Community" },
     { to: "/profile", icon: User, label: "Profile" },
@@ -60,4 +61,3 @@ const EcoNavbar = () => {
 };
 
 export default EcoNavbar;
-

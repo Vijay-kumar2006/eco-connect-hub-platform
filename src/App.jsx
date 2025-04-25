@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,6 +19,7 @@ import Identify from "./pages/Identify";
 import NotFound from "./pages/NotFound";
 import IdentifyWet from "./pages/IdentifyWet";
 import IdentifyDry from "./pages/IdentifyDry";
+import RecyclingCenters from "./pages/RecyclingCenters";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +45,7 @@ const App = () => (
           <Route path="/identify" element={<Identify />} />
           <Route path="/identify/wet" element={<IdentifyWet />} />
           <Route path="/identify/dry" element={<IdentifyDry />} />
+          <Route path="/recycling-centers" element={<RecyclingCenters />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
