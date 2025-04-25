@@ -73,7 +73,6 @@ const Explore = () => {
             </div>
           </div>
 
-          {/* Right column */}
           <div>
             <div className="rounded-3xl bg-gradient-to-tr from-yellow-100 via-white to-green-100 shadow-xl p-6 hover:scale-105 transition-transform duration-200">
               <h2 className="text-xl font-bold mb-3 text-green-900">Educational Resources & Guides</h2>
@@ -107,7 +106,6 @@ const Explore = () => {
           </div>
         </div>
 
-        {/* Links section */}
         <div className="flex flex-wrap justify-center gap-4 mt-8">
           <Link
             to="/track"

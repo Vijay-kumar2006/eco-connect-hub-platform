@@ -18,7 +18,7 @@ const RecyclingMap = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [78.9629, 20.5937], // Center of India
+      center: [78.9629, 20.5937], 
       zoom: 4
     });
 
@@ -39,13 +39,12 @@ const RecyclingMap = () => {
             Map Setup Required
           </h3>
           <p className="text-yellow-700 text-sm mt-2">
-            Please enter your Mapbox public token to view the recycling centers map.
-            You can get one for free at mapbox.com
+            Please enter your Area Zip Code for Searching your nearby recycling center
           </p>
           <div className="mt-3 flex gap-2">
             <input
               type="text"
-              placeholder="Enter your Mapbox token"
+              placeholder="Enter your Area zip code"
               className="flex-1 px-3 py-2 border rounded-md text-sm"
               onChange={(e) => setMapboxToken(e.target.value)}
             />

@@ -34,7 +34,7 @@ const EcoNavbar = () => {
           <div className="flex flex-col">
             <span className="text-xl font-bold text-green-800 tracking-tight">EcoTrack</span>
             <span className="hidden sm:inline text-xs text-gray-600 font-medium">
-              Identify & Learn about Plants!
+              Identify & Learn about Recycling!
             </span>
           </div>
         </div>

@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Users, ArrowRight, Calendar, MapPin, Heart } from "lucide-react";
 
 const Community = () => {
-  // Add the missing data definitions
   const communities = [
     {
       id: 1,
@@ -239,7 +238,7 @@ const Community = () => {
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <p>&copy; 2025 EcoConnect Hub. All rights reserved.</p>
+            <p>&copy; Ecotrack Made in India with ❤️</p>
           </div>
         </div>
       </footer>
