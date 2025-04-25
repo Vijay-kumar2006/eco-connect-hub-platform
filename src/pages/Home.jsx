@@ -81,7 +81,7 @@ const Home = () => {
               <CardContent className="p-6">
                 <div className="relative">
                   <img 
-                    src="/lovable-uploads/c5e03f53-84bf-45b9-8008-7e2def08131a.png"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJ8R-1CQ20ynrNPgN8m9WmEdTnURwJ6Ifpg&s"
                     alt="Recycling Centers Map"
                     className="w-full h-[300px] object-cover rounded-lg"
                   />
@@ -157,7 +157,7 @@ const Home = () => {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 EcoConnect Hub. All rights reserved.</p>
+            <p>&copy; Ecotrack Made in India with ❤️</p>
           </div>
         </div>
       </footer>

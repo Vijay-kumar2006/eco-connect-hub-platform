@@ -20,7 +20,7 @@ const Profile = () => {
               <div className="flex flex-col md:flex-row items-start md:items-end gap-6">
                 <div className="absolute -top-16 border-4 border-white rounded-full overflow-hidden">
                   <img
-                    src="https://randomuser.me/api/portraits/women/42.jpg"
+                    src="https://randomuser.me/api/portraits/men/42.jpg"
                     alt="Profile"
                     className="h-32 w-32 object-cover"
                   />
@@ -255,7 +255,7 @@ const Profile = () => {
       <footer className="bg-gray-800 text-white py-8 mt-12">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <p>&copy; 2025 EcoConnect Hub. All rights reserved.</p>
+            <p>&copy; Ecotrack Made in India with ❤️</p>
           </div>
         </div>
       </footer>
